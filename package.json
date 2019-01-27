@@ -1,0 +1,21 @@
+{
+  "name": "artifact_counter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "repository": "https://github.com/munchkin09/laughing-octo-guide.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "carlos ledesma",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request-promises": "^1.1.0",
+    "rfr": "^1.2.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.3"
+  }
+}
