@@ -8,7 +8,7 @@ module.exports = function() {
     // route to trigger the capture
     router.get('/getArtifactData', function (req, res) {
         const stmCtrl = new SteamController()
-        stmCtrl.getArtifactData(req, res)
+        return stmCtrl.getArtifactData(req, res)
         
     });
 
