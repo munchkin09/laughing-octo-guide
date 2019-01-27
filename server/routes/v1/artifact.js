@@ -1,4 +1,4 @@
-//module.exports = function() {
+module.exports = function() {
     var express = require('express');
     var rfr = require('rfr')
     var router = express.Router();
@@ -12,6 +12,5 @@
         
     });
 
-
     return router;
-//}
+}
