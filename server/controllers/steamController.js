@@ -1,13 +1,32 @@
 
 module.exports = function() {
-const request = require('request-promises')
+const request = require('request-promises'),
+        config = require('../config/config.prod')
 
-const getArtifactData = function(req, res) {
-    return res.json( { status : "success"} ).sendStatus(200);
+const getArtifactActivePlayers = function(req, res) {
+
+    const queryRequest = {
+        url: "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/",
+        method:"get",
+        qs: {
+            "appid": 583950,
+            "key": config.api_key_steam
+        }
+
+    }
+    request(queryRequest)
+    .then( (response) => {
+        return res.json( JSON.parse(response.body) ).sendStatus(200);
+    })
+    .catch( (error) => {
+        console.log(error);
+        
+    })
+    
 }
 
  return {
-    getArtifactData: getArtifactData
+    getArtifactActivePlayers: getArtifactActivePlayers
 }
 
 }
