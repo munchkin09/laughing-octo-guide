@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
   });
 
 
-const routerGetActivePlayersData = rfr('server/routes/v1/mtgduels');
+const routerGetActivePlayersData = rfr('server/routes/v1/ActivePlayersData');
 
 
 app.use('/v1/games', routerGetActivePlayersData())
