@@ -6,7 +6,7 @@ module.exports = function() {
 
 
     // route to trigger the capture
-    router.get('/getArtifactData', function (req, res) {
+    router.get('/getMtgDuelstData', function (req, res) {
         const stmCtrl = new SteamController()
         return stmCtrl.getMtgDuelstActivePlayers(req, res)
         
