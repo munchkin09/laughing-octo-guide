@@ -25,7 +25,7 @@ const getArtifactActivePlayers = function(req, res) {
     
 }
 
-const getMtgDuelsActivePlayers = function(req, res) {
+const getMtgDuelstActivePlayers = function(req, res) {
 
     const queryRequest = {
         url: "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/",
@@ -49,7 +49,7 @@ const getMtgDuelsActivePlayers = function(req, res) {
 
  return {
     getArtifactActivePlayers: getArtifactActivePlayers,
-    getMtgDuelsActivePlayers: getMtgDuelsActivePlayers
+    getMtgDuelstActivePlayers: getMtgDuelstActivePlayers
 }
 
 }
