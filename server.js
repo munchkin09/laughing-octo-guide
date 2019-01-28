@@ -10,8 +10,11 @@ app.use(function(req, res, next) {
   });
 
 const routerArtifact = rfr('server/routes/v1/artifact');
+const routerMtgDuels = rfr('server/routes/v1/mtgduels');
 
 app.use('/v1/artifact',  routerArtifact() );
+
+app.use('/v1/mtgduels', routerMtgDuels())
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
