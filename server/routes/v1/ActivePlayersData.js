@@ -8,8 +8,7 @@ module.exports = function() {
     // route to trigger the capture
     router.get('/:gameId/getActivePlayersData', function (req, res) {
         const stmCtrl = new SteamController()
-        return stmCtrl.getActivePlayersData(req, res)
-        
+        return stmCtrl.getActivePlayersData(req, res);
     });
 
     return router;
