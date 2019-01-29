@@ -19,7 +19,7 @@ const getActivePlayersData = async function(req, res) {
         }
     }
     const gameData = await getGameSchema(req, res);
-    console.log(gameData.game.availableGameStats.stats);
+    console.log(gameData);
     
     request(queryRequest)
     .then( (response) => {    
