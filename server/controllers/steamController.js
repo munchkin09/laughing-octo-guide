@@ -4,13 +4,17 @@ const request = require('request-promises'),
         config = require('../config/config.prod')
 
 const getActivePlayersData = async function(req, res) {
-    const gameId = req.params.gameId
-    console.log(gameId);
-    
+    const gameId = req.params.gameId   
     if(isNaN(gameId)) {
         return res.status(400).json( { error: "Not valid game ID." } );
+    }  else if(parseInt(gameId) <= 1) {
+        return res.status(400).json( { error: "Not valid game ID." } );
     }
-    const queryRequest = {
+
+    const gameData = await getGameSchema(req, res);
+
+
+    const optionsRequest = {
         url: "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/",
         method:"get",
         qs: {
@@ -18,13 +22,11 @@ const getActivePlayersData = async function(req, res) {
             "key": config.api_key_steam
         }
     }
-    const gameData = await getGameSchema(req, res);
-    console.log(gameData);
-    
-    request(queryRequest)
+    request(optionsRequest)
     .then( (response) => {    
         const data = JSON.parse(response.body)
-        return res.status(200).json( { data: data.response, name: gameData.game.gameName } );
+        let ret = { data: data.response, name: gameData ? gameData.game.gameName : 'Name not available' }
+        return res.status(200).json( ret );
     })
     .catch( (error) => {
         console.log(error);
