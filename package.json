@@ -6,7 +6,7 @@
   "repository": "https://github.com/munchkin09/laughing-octo-guide.git",
   "scripts": {
     "start": "SET NODE_ENV=dev && node server.js",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --exit --timeout 10000"
   },
   "author": "carlos ledesma",
   "license": "ISC",

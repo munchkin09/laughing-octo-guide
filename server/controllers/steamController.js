@@ -4,14 +4,16 @@ const request = require('request-promises'),
         config = require('../config/config.prod')
 
 const getActivePlayersData = async function(req, res) {
-    const gameId = req.params.gameId   
+    let poolRequest = [];
+    const gameId = req.params.gameId;
+
     if(isNaN(gameId)) {
         return res.status(400).json( { error: "Not valid game ID." } );
     }  else if(parseInt(gameId) <= 1) {
         return res.status(400).json( { error: "Not valid game ID." } );
     }
 
-    const gameData = await getGameSchema(req, res);
+    poolRequest.push(getGameSchema(req, res))
 
 
     const optionsRequest = {
@@ -22,9 +24,13 @@ const getActivePlayersData = async function(req, res) {
             "key": config.api_key_steam
         }
     }
-    request(optionsRequest)
-    .then( (response) => {    
-        const data = JSON.parse(response.body)
+
+    poolRequest.push(request(optionsRequest))
+
+    Promise.all(poolRequest)
+    .then( (results) => {    
+        const gameData = results[0]
+        const data = JSON.parse(results[1].body)
         let ret = { data: data.response, name: gameData ? gameData.game.gameName : 'Name not available' }
         return res.status(200).json( ret );
     })
